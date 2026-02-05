@@ -69,9 +69,7 @@ docker run -d \
     -t linkease/kspeeder:latest -f ./Dockerfile.architecture --push .
   ```
 
-## 详细指南
-- `external/docker_kspeeder/howto.md` 介绍 buildx 预配置、构建、更新等操作。
-- 想深入理解节点 cache/accelnodemgr/domainfold 约定，请参阅 `kspeeder/docs/multi-startup-node-cache-plan.md` 和 `kspeeder/cmd/multi/CONTEXT.md`。
+- [`howto.md`](./howto.md) 介绍 buildx 预配置、构建、更新等操作。
 
 ## 注意事项
 - 首次启动时请确保配置目录与数据目录可写。
