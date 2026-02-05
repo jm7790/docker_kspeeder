@@ -17,3 +17,4 @@ services:
       - KSPEEDER_ADMIN_PORT=5003
       - KSPEEDER_CONFIG=/kspeeder-config
       - KSPEEDER_DATA=/kspeeder-data
+      - KS_USER_NODES_CONFIG=/kspeeder-config/nodes.yaml

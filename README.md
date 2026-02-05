@@ -68,6 +68,10 @@ docker-compose up -d
   - /kspeeder-data：数据存储目录
   - /kspeeder-config：配置文件目录
 
+- 节点配置：
+  - `KS_USER_NODES_CONFIG` 用来指定 `nodes.yaml` 的路径，容器默认设置为 `/kspeeder-config/nodes.yaml`，建议把节点清单写在该位置或通过环境变量指向你的自定义文件。
+  - 为了兼容旧的 docker 镜像源配置，entrypoint 仍会导出 `KS_USER_MIRROR_CONFIG`，但该 envvar 目前已废弃；优先把镜像源配置写到 `nodes.yaml` 的 `docker`/`proxies` block 下。若真的需要旧格式，也请把 `mirrors.yaml` 挂载进容器并显式设置 `KS_USER_MIRROR_CONFIG`。
+
 ## 使用说明
 - 配置docker镜像服务地址
   - 镜像地址：https://registry.linkease.net:5443
@@ -100,4 +104,3 @@ docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
 - 首次启动时，请确保配置文件目录和数据目录具有正确的权限
 - 如需修改端口映射，请同时更新容器的环境变量配置
 - 建议使用 `docker-compose` 进行部署和管理
-
