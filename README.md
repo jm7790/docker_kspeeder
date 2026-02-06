@@ -3,11 +3,20 @@
 Docker KSpeeder 将 `linkease/kspeeder` 打包进轻量 Alpine 容器，方便在 Docker Compose 或纯 Docker 运行模式下部署加速/监控能力。它内置多架构构建支持、配置模板，并在容器启动时自动生成 `nodes.yaml`，让 Docker 镜像加速、domainfold 处理、代理节点等功能即刻可用。
 
 ## KSpeeder 核心特性
-- 智能镜像源与加速节点：自动从多个源拉取 Docker/ghcr 镜像，并按照优先级、Cloudflare、member 等策略动态选择最快节点。
-- 多模态代理支持：通过 `proxies` 配置共享 SOCKS/HTTP 代理，docker/domainfold/registries 可以复用同一套代理集合，并配合测速目标（`speed_url`）保持健康。
-- Domainfold 加速引擎：内置 domainfold route/cache 策略，支持自动生成 alias、routes、prefix override，并可通过 `KS_USER_NODES_CONFIG` 指定 upstream list。
+- 最核心是带宽叠加，把 socks5/http 以及各种 mirrors 进行带宽叠加
+- 支持 Cloudflare 优选 IP 加速
+- 支持日常开发需要的 Docker, Github, Golang, nodejs, python, java 加速等等
 - 节点缓存 & 测量：accelnodemgr 会持续刷新节点 inventory、测速结果与 CFIP 信息，减少冷启动时的网络抖动；`KS_USER_NODES_CONFIG` 支持 `docker`、`domainfold`、`proxies` 统一配置源节点。
 - 多架构 & CI 支持：提供 `buildx` 脚本 (`howto.md`) 以及 `nodes.sample.yaml` 模板，帮助你构建从 x86_64 到 ARM64 的镜像，并内置了 entrypoint 监控/重启逻辑。
+
+### 通用节点叠加加速支持：
+![通用节点叠加加速支持](https://www.koolcenter.com/uploads/default/original/3X/6/0/605267351beb7adef6f78c1476cdc6f4302df887.png)
+
+### Docker CF 优选支持
+![Docker CF 优选支持](https://www.koolcenter.com/uploads/default/original/3X/c/f/cf41c699399d925922cbbabaec2087018b5aa01f.png)
+
+### GITHUB 克隆或者下载支持
+![GITHUB 克隆或者下载支持](https://www.koolcenter.com/uploads/default/original/3X/7/e/7e823c357a9f6b61a939b766c9f239eb04fe740c.png)
 
 <!-- keep quick start section unchanged after features? -->
 
